@@ -1,0 +1,17 @@
+.navbar-colors{
+    font-weight: bold;
+    font-size: 25px;
+    color: #ffffff;
+}
+.nav-item{
+    font-size:20px;
+    font-weight:600;
+    color:#ffffff;
+}
+.fas{
+    font-size:25px;
+    color:#ffffff !important;
+}
+.body-container{
+    margin-top: 200px;
+}

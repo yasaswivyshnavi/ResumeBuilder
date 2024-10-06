@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/form.css">
+    
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="container form-container ">
+
+        <h2 class="text-info text-center">Resume Details Form</h2>
+        
+        <form method="post" enctype="multipart/form-data">
+            <!-- Name Section -->
+            <div class="form-group">
+                <label for="name" class="text-info">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <!-- Education Details Section -->
+            <div class="form-group">
+                <label class="text-info">Education Details</label>
+                <input type="text" class="form-control mt-2" placeholder="phd" name="phd" >
+                <input type="text" class="form-control mt-2" placeholder="Mtech/any other" name="mtech" >
+                <input type="text" class="form-control mt-2" placeholder="Degree" name="Dcollege" required>
+                <input type="text" class="form-control mt-2" placeholder="Inter/Diploma" name="IDcollege" required>
+                <input type="text" class="form-control mt-2" placeholder="School Name" name="school" required>
+            </div>
+
+             
+            <!-- Career Objective-->
+            <div class="form-group">
+                <label for="experience" class="text-info">Career Objective</label>
+                <textarea class="form-control" id="careerobj" name="careerobj" rows="4" ></textarea>
+            </div> 
+
+
+            <!-- Internships Section -->
+            <div class="form-group">
+                <label for="internships" class="text-info">Number of Internships</label>
+                <input type="number" class="form-control" id="internships" name="internships" required>
+            </div>
+            <div id="internship-fields"></div>
+
+            <!-- Certifications Section -->
+            <div class="form-group">
+                <label for="certifications" class="text-info">Number of Certifications</label>
+                <input type="number" class="form-control" id="certifications" name="certifications" required>
+            </div>
+            <div id="certification-fields"></div>
+
+            <!-- Projects Section -->
+            <div class="form-group">
+                <label for="projects" class="text-info">Number of Projects</label>
+                <input type="number" class="form-control" id="projects" name="projects" required>
+            </div>
+            <div id="project-fields"></div>
+
+            <!-- Technical Skills Section -->
+            <div class="form-group">
+                <label for="technicalSkills" class="text-info">Number of Technical Skills</label>
+                <input type="number" class="form-control" id="technicalSkills" name="technicalSkills" required>
+            </div>
+            <div id="technical-skills-fields"></div>
+
+            <!-- Academic Achievements Section -->
+            <div class="form-group">
+                <label for="achievements" class="text-info">Number of Academic Achievements</label>
+                <input type="number" class="form-control" id="achievements" name="achievements" required>
+            </div>
+            <div id="achievement-fields"></div>
+
+            <!-- Experience Section -->
+            <div class="form-group">
+                <label for="experiences" class="text-info">Number of Experiences</label>
+                <input type="number" class="form-control" id="experiences" name="experiences" rows="4">
+            </div>
+            <div id="experience-fields"></div>
+            
+            <!-- Hobbies -->
+            <div class="form-group">
+                <label for="Hobbies" class="text-info">Hobbies</label>
+                <input type="text" class="form-control" placeholder="Hobbies seperated by commas" id="Hobbies" name="hobbies" rows="2" required></textarea>
+            </div>
+
+            <!-- Strengths -->
+            <div class="form-group">
+                <label for="Strengths" class="text-info">Strengths</label>
+                <input type="text" class="form-control" placeholder="Strengths seperated by commas" id="Strengths" name="strengths" rows="2" >
+            </div>
+
+            <!-- Weaknesses -->
+            <div class="form-group">
+                <label for="Weaknesses" class="text-info">Weaknesses</label>
+                <input type="text" class="form-control" placeholder="weaknesses seperated by comma" id="Weaknesses" name="weaknesses" rows="2" >
+            </div>
+
+
+            <!-- Personal Information Section -->
+            <div class="form-group">
+                <label class="text-info">Personal Information</label>
+                <input type="text" class="form-control mt-2" placeholder="Father's name" name="Fathername" required>
+                <input type="text" class="form-control mt-2" placeholder="Mother's name" name="Mothername" required>
+                <input type="email" class="form-control mt-2" placeholder="User Email ID" name="email" required>
+                <input type="text" class="form-control mt-2" placeholder="User LinkedIn ID" name="linkedin" >
+                <input type="text" class="form-control mt-2" placeholder="User Github ID" name="github" >
+                <input type="text" class="form-control mt-2" placeholder="User blog Id" name="blog" >
+                <input type="text" class="form-control mt-2" placeholder="User Contact Number" name="contact" required>
+                <input type="text" class="form-control mt-2" placeholder="Gender" name="gender" required>
+                <input type="date" class="form-control mt-2" name="dob" required>
+                
+            </div>
+
+            <!-- Address Section -->
+            <div class="form-group">
+                <label for="address" class="text-info">Address</label>
+                <input type="text" class="form-control mt-2" placeholder="address" name="address" rows="3" ></textarea>
+            </div>
+
+            <!-- Image Upload Section -->
+            <div class="form-group">
+                <label for="image" class="text-info">Upload Image</label>
+                <input type="file" class="form-control-file" id="image" name="image" >
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-info btn-block">Submit</button>
+        </form>
+    </div>
+
+    <!-- JavaScript to dynamically add input fields for Internships, Certifications, and Projects -->
+    <script>
+        document.getElementById('internships').addEventListener('input', function () {
+            var count = this.value;
+            var internshipFields = document.getElementById('internship-fields');
+            internshipFields.innerHTML = '';  // Clear existing fields
+            for (var i = 1; i <= count; i++) {
+                var div = document.createElement('div');
+                div.className = 'form-group';
+                div.innerHTML = '<label class="text-info">Internship ' + i + ' Details</label>' +
+                                '<input type="text" class="form-control" placeholder="Internship ' + i + ' Name" name="internship' + i + '">' +
+                                '<input type="text" class="form-control mt-2" placeholder="Internship ' + i + ' Description" name="internshipDesc' + i + '">';
+                internshipFields.appendChild(div);
+            }
+        });
+
+        document.getElementById('certifications').addEventListener('input', function () {
+            var count = this.value;
+            var certificationFields = document.getElementById('certification-fields');
+            certificationFields.innerHTML = '';  // Clear existing fields
+            for (var i = 1; i <= count; i++) {
+                var div = document.createElement('div');
+                div.className = 'form-group';
+                div.innerHTML = '<label class="text-info">Certification ' + i + ' Details</label>' +
+                                '<input type="text" class="form-control" placeholder="Certification ' + i + ' Name" name="certification' + i + '">';
+                certificationFields.appendChild(div);
+            }
+        });
+
+        document.getElementById('projects').addEventListener('input', function () {
+            var count = this.value;
+            var projectFields = document.getElementById('project-fields');
+            projectFields.innerHTML = '';  // Clear existing fields
+            for (var i = 1; i <= count; i++) {
+                var div = document.createElement('div');
+                div.className = 'form-group';
+                div.innerHTML = '<label class="text-info">Project ' + i + ' Details</label>' +
+                                '<input type="text" class="form-control mt-2" placeholder="Project ' + i + ' Name" name="project' + i + '">' +
+                                '<input type="text" class="form-control mt-2" placeholder="Project ' + i + ' Role" name="projectrole' + i + '">' +
+                                '<input type="text" class="form-control mt-2" placeholder="Project ' + i + ' Description" name="projectDesc' + i + '">';
+                projectFields.appendChild(div);
+            }            
+        });
+
+                // Handle dynamically generating technical skills input fields
+        document.getElementById('technicalSkills').addEventListener('input', function () {
+            var count = this.value;
+            var skillsFields = document.getElementById('technical-skills-fields');
+            skillsFields.innerHTML = '';  // Clear existing fields
+            for (var i = 1; i <= count; i++) {
+                var div = document.createElement('div');
+                div.className = 'form-group';
+                div.innerHTML = '<label class="text-info">Technical Skill ' + i + '</label>' +
+                                '<input type="text" class="form-control" placeholder="Technical Skill ' + i + '" name="technicalSkill' + i + '">';
+                skillsFields.appendChild(div);
+            }
+        });
+
+
+        document.getElementById('achievements').addEventListener('input', function () {
+            var count = this.value;
+            var achievementFields = document.getElementById('achievement-fields');
+            achievementFields.innerHTML = '';  // Clear existing fields
+            for (var i = 1; i <= count; i++) {
+                var div = document.createElement('div');
+                div.className = 'form-group';
+                div.innerHTML = '<label class="text-info">Achievement ' + i + ' Details</label>' +
+                                '<input type="text" class="form-control" placeholder="Achievement ' + i + ' Title" name="achievement' + i + '">' +
+                                '<input type="text" class="form-control mt-2" placeholder="Achievement ' + i + ' Description" name="achievementDesc' + i + '">';
+                achievementFields.appendChild(div);
+            }
+        });
+
+        document.getElementById('experiences').addEventListener('input', function () {
+            var count = this.value;
+            var experienceFields = document.getElementById('experience-fields');
+            experienceFields.innerHTML = '';  // Clear existing fields
+            for (var i = 1; i <= count; i++) {
+                var div = document.createElement('div');
+                div.className = 'form-group';
+                div.innerHTML = '<label class="text-info">Experience ' + i + ' Details</label>' +
+                                '<input type="text" class="form-control" placeholder="Experience ' + i + ' Title" name="experience' + i + '">' +
+                                '<input type="text" class="form-control mt-2" placeholder="Experience ' + i + ' Description" name="experienceDesc' + i + '">';
+                experienceFields.appendChild(div);
+            }
+        });
+
+    </script>
+</body>
+</html>

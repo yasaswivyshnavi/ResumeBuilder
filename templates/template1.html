@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Template</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+     <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="../static/css/template1.css">
+    
+    <style>
+        @media print {
+            /* Hide the print and download buttons when printing */
+            .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+
+    <div class="resume-container ">
+
+       <!-- Buttons for Print and Download -->
+    <div class="text-center mt-4">
+        <button onclick="printPage()" class="btn btn-info print-btn">Print Page</button>
+    </div>
+    
+        <!-- First Row -->
+        <div class="row ">
+            <!-- First Column -->
+            <div class="col-4 text-center">
+                <img src="{{ session['image'] }}" alt="Profile Image" class="profile-image">
+            </div>
+            <!-- Second Column -->
+            <div class="col-8 name-section text-left">
+                <!-- fa-2x is use increase the size of the icon -->
+                <h1>{{ session['uname'] }}</h1>
+                <i class="fas fa-envelope"></i> {{session['email']}} <br>
+                <i class="fab fa-linkedin"></i> {{session['linkedin']}} <br>
+                <i class="fas fa-phone"></i> {{session['contact']}} <br>
+                <i class="fab fa-github "></i>{{session['github']}} 
+            </div>
+        </div>
+
+        <!-- Horizontal Line after First Row -->
+        <hr>
+
+        <!-- Second Row -->
+        <div class="row">
+            <!-- First Column -->
+            <div class="col-6">
+                <div class="section">
+                    <h3>Education</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-book-open text-secondary "></i> &nbsp; {{session['Dcollege']}} </li>
+                        <li><i class="fas fa-book-open text-secondary"></i> &nbsp; {{session['IDcollege']}} </li>
+                        <li><i class="fas fa-book-open text-secondary"></i> &nbsp; {{session['school']}}</li> 
+                    </ul>
+                    <hr>
+                <h3>Internships</h3>
+                <ol>
+                    {% if session['internships'] %}
+                        {% for internship in session['internships'] %}
+                        <li><b>{{ internship.title }} </b></li>
+                        {{ internship.description }}
+                        {% endfor %}
+                    {% endif %}
+                </ol>
+                <hr>
+                <h3>Projects</h3>
+                <ol>
+                    {% if session['projects'] %}
+                        {% for project in session['projects'] %}
+                        <li><b>{{ project.title }} </b></li>
+                        {{ project.role }}
+                        {{ project.description }}
+                        {% endfor %}
+                    {% endif %}
+                </ol>
+            </div>
+        </div>
+
+            <!-- Second Column -->
+            <div class="col-6 vertical-line">
+                <div class="section">
+                    <h3>Certifications</h3>
+                    <ul>
+                        {% if session['certifications'] %}
+                            {% for certification in session['certifications'] %}
+                                <li>{{ certification }}</li>
+                            {% endfor %}
+                        {% else %}
+                            
+                        {% endif %}
+                    </ul>
+                    <hr>
+                    <h3>Academic Achievements</h3>
+                    <ul>
+                        {% if session['achievements'] %}
+                        {% for achievement in session['achievements'] %}
+                            <li>
+                                <strong>{{ achievement.title }}:</strong> </li>
+                                <p>{{ achievement.description }}</p>
+                            
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    
+                {% endif %}
+                                            
+                                        
+                    </ul>
+                    <hr>
+                    <h3>Hobbies</h3>
+                    <ul>
+                        <li>{{session['hobbies']}}</li>
+                        
+                    </ul>
+                    <hr>
+                    <h3>Personal Info</h3>
+                    <ul>
+                        <li>{{session['email']}}</li>
+                        <li>{{session['linkedin']}}</li>
+                        <li>{{session['contact']}}</li>
+                        <li>{{session['address']}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+   
+
+    <!-- jsPDF and html2canvas Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- JavaScript for Print and Download functionality -->
+    <script>
+        // Function to trigger the print dialog
+        function printPage() {
+            window.print();
+        }
+
+    </script>
+</body>
+</html>

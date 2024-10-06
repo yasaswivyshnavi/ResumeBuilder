@@ -1,0 +1,27 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+.login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #17a2b8;
+    font-weight: bold;
+}
+.form-group label {
+    font-weight: bold;
+}
+.signin-link {
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Resume Builder</title>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/signup.css">
+</head>
+<body>
+
+
+    <div class="container-fluid">
+        <div class="row justify-content-center ">
+            <div class="col-12 fixed-top">
+                {% include "header.html"%}
+            </div>
+        <div class="col-12">
+            {% if msg == 1 %}
+            <h3 style="color:red">please enter all details</h3>
+            {% elif msg == 2 %}
+            <h3 style="color:red">Password mismatch</h3>
+            {% elif msg == 3 %}
+            <h3 style="color:red">User already exist</h3>
+            {% elif msg == 4 %}
+            <h3 style="color:green">Account success</h3>
+            {% elif msg == 5 %}
+            <h3 style="color:red">something went wrong ,please try again</h3>
+            {% endif %}
+        </div>
+                
+            
+            <div class="col-md-6 ">
+                <div class="login-container">
+                    <h2 class="text-center">Sign Up</h2>
+                    <!-- Login Form -->
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" name="uname" id="username" placeholder="Enter your username " required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" name="email" id="Email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="usernameEmail">Mobile No</label>
+                            <input type="number" class="form-control" name="mobile" id="Mobileno" placeholder="Enter your username Mobile No" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="pwd" id="password" placeholder="Enter password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Confirm Password</label>
+                            <input type="password" class="form-control" name="cpwd" id="cpassword" placeholder="Enter Confirm password" required>
+                        </div>
+                        <!-- Submit Button -->
+                        <button class="btn btn-info btn-block">SignIn</button>
+                        <!-- Sign In Link -->
+                        <div class="text-center link mt-2">
+                            <p>Already have an account? <a href="login">Login here</a>.</p>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

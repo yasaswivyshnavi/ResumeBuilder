@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery with Expandable Image</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .img-thumbnail {
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .img-thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .selected-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .side-images {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-images img {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <!-- Main Image Gallery -->
+    <div class="row" id="image-gallery">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../static/images/t1.png" alt="Image 1" class="img-thumbnail" onclick="expandImage(1)">
+                <div class="card-body">
+                    <h5 class="card-title">Image 1</h5>
+                    <p class="card-text">Description for Image 1.</p>
+                    <a href="form/1" class="btn btn-link" onclick="expandImage(1)">Click Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300" alt="Image 2" class="img-thumbnail" onclick="expandImage(2)">
+                <div class="card-body">
+                    <h5 class="card-title">Image 2</h5>
+                    <p class="card-text">Description for Image 2.</p>
+                    <a href="form/2" class="btn btn-link" onclick="expandImage(2)">Click Here</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../static/images/t3.png" alt="Image 3" class="img-thumbnail" onclick="expandImage(3)">
+                <div class="card-body">
+                    <h5 class="card-title">Image 3</h5>
+                    <p class="card-text">Description for Image 3.</p>
+                    <a href="form/3" class="btn btn-link" onclick="expandImage(3)">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expanded View (Hidden Initially) -->
+    <div class="row" id="expanded-view" style="display: none;">
+        <!-- Side Images (Column 1) -->
+        <div class="col-md-4 side-images" id="side-images"></div>
+        <!-- Expanded Image (Columns 2 & 3) -->
+        <div class="col-md-8">
+            <img id="selectedImage" src="" alt="Selected Image" class="img-thumbnail selected-image">
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <button class="btn btn-primary back-button" id="backButton" onclick="resetView()">Back</button>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Expand the selected image into two columns, display others in one
+    function expandImage(imageIndex) {
+        const gallery = document.getElementById('image-gallery');
+        const expandedView = document.getElementById('expanded-view');
+        const sideImages = document.getElementById('side-images');
+        const selectedImage = document.getElementById('selectedImage');
+        const backButton = document.getElementById('backButton');
+
+        // Array of images
+        const images = [
+            "../static/images/t1.png",
+            "https://via.placeholder.com/300",
+            "../static/images/t3.png"
+        ];
+
+        // Set the selected image in the larger section
+        selectedImage.src = images[imageIndex - 1];
+
+        // Display the other two images in the side column
+        sideImages.innerHTML = '';
+        images.forEach((image, index) => {
+            if (index !== imageIndex - 1) {
+                const img = document.createElement('img');
+                img.src = image;
+                img.className = 'img-thumbnail';
+                img.onclick = () => expandImage(index + 1);
+                sideImages.appendChild(img);
+            }
+        });
+
+        // Toggle the visibility of sections
+        gallery.style.display = 'none';
+        expandedView.style.display = 'flex';
+        backButton.style.display = 'block';
+    }
+
+    // Reset to the initial view
+    function resetView() {
+        const gallery = document.getElementById('image-gallery');
+        const expandedView = document.getElementById('expanded-view');
+        const backButton = document.getElementById('backButton');
+
+        gallery.style.display = 'flex';
+        expandedView.style.display = 'none';
+        backButton.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

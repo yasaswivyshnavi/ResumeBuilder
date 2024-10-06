@@ -1,0 +1,114 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+}
+
+.resume-container {
+    margin: 50px auto;
+    /* max-width: 900px; */
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.name-section {
+    background-color: #033669; /* Navy blue background */
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h3 {
+    color: #003366; /* Navy blue color for headers */
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    padding: 5px 0;
+}
+
+.vertical-line {
+    border-left: 2px solid #ccc;
+    /* padding-left: 50px; */
+    align-items: center;
+}
+
+.fa {
+    color: #003366; /* Navy blue color for icons */
+}
+
+.print-btn {
+    margin-top: 5px;
+}
+
+hr {
+    border-top: 1px solid #ccc;
+}
+
+        @media print {
+            /* Hide print button when printing */
+            .print-btn {
+                display: none;
+            }
+            
+            /* Background and general styles */
+            body {
+               /*  background-color: #003366; Your desired background color */
+                -webkit-print-color-adjust: exact; /* For WebKit browsers */
+                print-color-adjust: exact; /* For others */
+            }
+            
+            /* Main resume container styles */
+            .resume-container {
+                background-color: #ffffff; /* Ensure content background is white */
+                color: black; /* Ensure text is readable */
+                border: none; /* Remove borders */
+                box-shadow: none; /* Remove shadows */
+            }
+            
+            /* Font sizes for printing */
+            h1, h2, h3, p {
+                font-size: 15pt; /* Adjust font size for better readability */
+            }
+    
+            /* Lists */
+            ul, ol {
+                margin-left: 5px; /* Adjust margin for lists */
+            }
+    
+            /* Images */
+            img {
+                max-width: 100%; /* Ensure images fit within the printed page */
+                height: auto; /* Maintain aspect ratio */
+            }
+    
+            /* Ensure links are printed */
+            a {
+                color: black; /* Change link color to black */
+                text-decoration: none; /* Remove underline for cleaner print */
+            }
+    
+            /* Ensure table elements, if any */
+            table {
+                border-collapse: collapse; /* Remove gaps between cells */
+                width: 100%; /* Full width */
+            }
+            table, th, td {
+                border: 1px solid black; /* Add borders to table */
+            }
+        }
+  
